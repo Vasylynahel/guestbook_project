@@ -1,27 +1,43 @@
-# Ignore core and contrib modules/themes, vendor, and other generated files.
+# ===== Drupal core, contrib, and vendor =====
 core/
 vendor/
 web/modules/contrib/
 web/themes/contrib/
 web/profiles/contrib/
+web/libraries/
+
+# ===== Site-specific generated content =====
 web/sites/*/files/
 web/sites/*/private/
 
-# Ignore local settings and services files.
+# ===== Local settings =====
 web/sites/*/settings.local.php
 web/sites/*/services.local.yml
 
-# Ignore backup and temporary files.
+# ===== Cache and temporary files =====
 *.bak
 *.tmp
 *.swp
 *.swo
+tmp/
+cache/
 
-# Ignore composer lock if you don't want to track it (optional)
-# composer.lock
+# ===== OS generated files =====
+.DS_Store
+Thumbs.db
 
-# Ignore IDE/project files
+# ===== IDE and editor folders =====
 .idea/
 .vscode/
-.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# ===== Composer lock file =====
+# Якщо не хочеш фіксувати конкретні версії залежностей у проекті, розкоментуй:
+# composer.lock
+
+# ===== Keep custom modules and themes =====
+!web/modules/custom/
+!web/themes/custom/
+!config/
 
