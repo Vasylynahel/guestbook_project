@@ -1,0 +1,51 @@
+<?php
+
+/**
+ * @file
+ * Install file for Guestbook module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function guestbook_schema() {
+  $schema['guestbook_entries'] = [
+    'description' => 'Stores guestbook form submissions.',
+    'fields' => [
+      'id' => [
+        'description' => 'Primary Key: unique entry ID.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'name' => [
+        'description' => 'Name of the submitter.',
+        'type' => 'varchar',
+        'length' => 100,
+        'not null' => TRUE,
+      ],
+      'email' => [
+        'description' => 'Email address.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'phone' => [
+        'description' => 'Phone number.',
+        'type' => 'varchar',
+        'length' => 20,
+        'not null' => TRUE,
+      ],
+      'created' => [
+        'description' => 'UNIX timestamp when entry was created.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+    ],
+    'primary key' => ['id'],
+  ];
+
+  return $schema;
+}
+

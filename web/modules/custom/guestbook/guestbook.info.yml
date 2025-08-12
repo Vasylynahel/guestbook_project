@@ -1,0 +1,6 @@
+name: Guestbook
+type: module
+description: 'Guestbook form with AJAX validation and DB storage.'
+package: Custom
+core_version_requirement: ^10 || ^11
+
