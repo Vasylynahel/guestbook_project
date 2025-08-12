@@ -1,0 +1,27 @@
+# Ignore core and contrib modules/themes, vendor, and other generated files.
+core/
+vendor/
+web/modules/contrib/
+web/themes/contrib/
+web/profiles/contrib/
+web/sites/*/files/
+web/sites/*/private/
+
+# Ignore local settings and services files.
+web/sites/*/settings.local.php
+web/sites/*/services.local.yml
+
+# Ignore backup and temporary files.
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# Ignore composer lock if you don't want to track it (optional)
+# composer.lock
+
+# Ignore IDE/project files
+.idea/
+.vscode/
+.DS_Store
+
