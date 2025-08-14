@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Install file for the Guestbook module.
+ */
+
+/**
  * Implements hook_schema().
  */
 function guestbook_schema() {
@@ -31,6 +36,24 @@ function guestbook_schema() {
         'length' => 20,
         'not null' => TRUE,
       ],
+      'feedback' => [
+        'description' => 'Feedback text.',
+        'type' => 'text',
+        'size' => 'big',
+        'not null' => FALSE,
+      ],
+      'avatar' => [
+        'description' => 'User avatar file URI.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ],
+      'feedback_image' => [
+        'description' => 'Feedback image file URI.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ],
       'created' => [
         'description' => 'UNIX timestamp when entry was created.',
         'type' => 'int',
@@ -40,37 +63,7 @@ function guestbook_schema() {
     ],
     'primary key' => ['id'],
   ];
+
   return $schema;
-}
-
-/**
- * Add feedback, avatar, and feedback_image columns.
- */
-function guestbook_update_9001() {
-  $schema = \Drupal::database()->schema();
-
-  if (!$schema->fieldExists('guestbook_entries', 'feedback')) {
-    $schema->addField('guestbook_entries', 'feedback', [
-      'type' => 'text',
-      'size' => 'big',
-      'not null' => FALSE,
-    ]);
-  }
-
-  if (!$schema->fieldExists('guestbook_entries', 'avatar')) {
-    $schema->addField('guestbook_entries', 'avatar', [
-      'type' => 'varchar',
-      'length' => 255,
-      'not null' => FALSE,
-    ]);
-  }
-
-  if (!$schema->fieldExists('guestbook_entries', 'feedback_image')) {
-    $schema->addField('guestbook_entries', 'feedback_image', [
-      'type' => 'varchar',
-      'length' => 255,
-      'not null' => FALSE,
-    ]);
-  }
 }
 
