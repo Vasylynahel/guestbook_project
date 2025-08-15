@@ -1,8 +1,3 @@
-global-styling:
-  css:
-    theme:
-      css/style.css: {}
-
 guestbook-styles:
   css:
     theme:

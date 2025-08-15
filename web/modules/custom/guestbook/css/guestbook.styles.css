@@ -1,0 +1,153 @@
+/* guestbook.styles.css */
+
+/* Загальний блок */
+.block__content {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #4b3b2a;
+  background-color: #fdfaf6;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* ==== ФОРМА ==== */
+.guestbook-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.guestbook-form input[type="text"],
+.guestbook-form input[type="email"],
+.guestbook-form input[type="file"],
+.guestbook-form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #d2c4b2;
+  border-radius: 8px;
+  background-color: #fffefc;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.guestbook-form input:focus,
+.guestbook-form textarea:focus {
+  border-color: #b8976a;
+  box-shadow: 0 0 6px rgba(184, 151, 106, 0.3);
+  outline: none;
+}
+
+.form-item__label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+  color: #5c4735;
+}
+
+.guestbook-form .form-submit {
+  width: max-content;
+  padding: 12px 30px;
+  background-color: #b8976a;
+  color: #fffefc;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.guestbook-form .form-submit:hover {
+  background-color: #a17f4f;
+  box-shadow: 0 4px 8px rgba(161, 127, 79, 0.4);
+}
+
+/* ==== СПИСОК ВІДГУКІВ ==== */
+/* Загальний контейнер */
+.reviews-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #fdfaf5; /* світлий деревний фон */
+  border-radius: 10px;
+}
+
+/* Окремий відгук */
+.review {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Аватар */
+.review-avatar {
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.review-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #b8976a;
+  border-radius: 50%;
+}
+
+/* Контент відгуку */
+.review-content h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+  color: #5b4636; /* коричневий */
+}
+
+.review-date {
+  font-size: 0.85rem;
+  color: #8a7a6c;
+  margin-bottom: 8px;
+}
+
+.review-message {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #3d3224;
+}
+
+/* Зображення у відгуку */
+.review-image {
+  margin-top: 10px;
+}
+
+.review-image img {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 6px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Адаптивність */
+@media (max-width: 600px) {
+  .review {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .review-image img {
+    max-width: 100%;
+  }
+}
+
