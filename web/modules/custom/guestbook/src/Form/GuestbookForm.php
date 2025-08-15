@@ -78,17 +78,17 @@ class GuestbookForm extends FormBase implements ContainerInjectionInterface {
     ];
     
     // Додати #ajax для phone і feedback
-$form['phone']['#ajax'] = [
-  'callback' => '::validateFieldAjax',
-  'event' => 'keyup',
-  'wrapper' => 'form-messages',
-];
+      $form['phone']['#ajax'] = [
+        'callback' => '::validateFieldAjax',
+        'event' => 'keyup',
+        'wrapper' => 'form-messages',
+      ];
 
-$form['feedback']['#ajax'] = [
-  'callback' => '::validateFieldAjax',
-  'event' => 'keyup',
-  'wrapper' => 'form-messages',
-];
+      $form['feedback']['#ajax'] = [
+        'callback' => '::validateFieldAjax',
+        'event' => 'keyup',
+        'wrapper' => 'form-messages',
+      ];
 
 
     // Поле аватара з Ajax-перевіркою
@@ -168,6 +168,9 @@ $form['feedback']['#ajax'] = [
     // Телефон
     if (!preg_match('/^[0-9]+$/', $form_state->getValue('phone'))) {
       $form_state->setErrorByName('phone', $this->t('Телефон може містити лише цифри.'));
+    if (!preg_match('/^[0-9]{10}$/', trim($value))) {
+    $error_markup = $this->t('Телефон має містити 10 цифр.');
+    }
     }
 
     // Серверна валідація файлів
@@ -274,7 +277,7 @@ $form['feedback']['#ajax'] = [
     return $response;
   }
   
-public function validateFieldAjax(array &$form, FormStateInterface $form_state) {
+  public function validateFieldAjax(array &$form, FormStateInterface $form_state) {
     $response = new AjaxResponse();
     $triggering_element = $form_state->getTriggeringElement();
     $name = $triggering_element['#name'];
@@ -317,9 +320,34 @@ public function validateFieldAjax(array &$form, FormStateInterface $form_state) 
 
     $response->addCommand(new HtmlCommand('#form-messages', $error_markup));
     return $response;
+  }
+ function guestbook_get_reviews() {
+  \Drupal::logger('guestbook')->notice('guestbook_get_reviews() function was called');
+
+  $query = \Drupal::database()->select('guestbook_entries', 'g')
+    ->fields('g')
+    ->orderBy('created', 'DESC');
+  $results = $query->execute()->fetchAll();
+
+  \Drupal::logger('guestbook')->notice('Query returned @count rows', [
+    '@count' => count($results),
+  ]);
+
+  $reviews = [];
+  $file_url_generator = \Drupal::service('file_url_generator');
+
+  foreach ($results as $entry) {
+    $reviews[] = [
+      'name' => $entry->name,
+      'email' => $entry->email,
+      'phone' => $entry->phone,
+      'message' => $entry->feedback,
+      'avatar' => $entry->avatar ? $file_url_generator->generateAbsoluteString($entry->avatar) : '',
+      'image' => $entry->feedback_image ? $file_url_generator->generateAbsoluteString($entry->feedback_image) : '',
+      'created' => date('m/d/Y H:i:s', $entry->created),
+    ];
+  }
+
+  return $reviews;
 }
-
-
-
 }
-

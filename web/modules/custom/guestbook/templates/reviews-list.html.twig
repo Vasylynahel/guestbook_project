@@ -1,0 +1,25 @@
+{% if reviews %}
+  <div class="reviews-wrapper">
+    {% for review in reviews %}
+      <div class="review">
+        <div class="review-avatar">
+          <img src="{{ review.avatar }}" alt="{{ review.name }}">
+        </div>
+        <div class="review-content">
+          <h3>{{ review.name }}</h3>
+          <p class="review-date">{{ review.created }}</p>
+          <p class="review-message">{{ review.message }}</p>
+
+          {% if review.image %}
+            <div class="review-image">
+              <img src="{{ review.image }}" alt="Feedback image">
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p>Відгуків поки немає.</p>
+{% endif %}
+

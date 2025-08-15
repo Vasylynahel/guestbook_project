@@ -1,0 +1,51 @@
+<?php
+
+use Drupal\file\Entity\File;
+
+/**
+ * Implements hook_theme().
+ */
+function guestbook_theme($existing, $type, $theme, $path) {
+  return [
+    'reviews_list' => [
+      'variables' => ['reviews' => []],
+    ],
+  ];
+}
+
+/**
+ * Повертає масив відгуків з бази.
+ */
+function guestbook_get_reviews() {
+  $query = \Drupal::database()->select('guestbook_entries', 'g')
+    ->fields('g')
+    ->orderBy('created', 'DESC');
+  $results = $query->execute()->fetchAll();
+
+  $reviews = [];
+  $file_url_generator = \Drupal::service('file_url_generator');
+
+  foreach ($results as $entry) {
+    // Якщо немає аватара або картинки — ставимо дефолтну
+    $avatar_url = $entry->avatar
+      ? $file_url_generator->generateAbsoluteString($entry->avatar)
+      : '/modules/custom/guestbook/images/default-avatar.png';
+
+    $feedback_image_url = $entry->feedback_image
+      ? $file_url_generator->generateAbsoluteString($entry->feedback_image)
+      : '/modules/custom/guestbook/images/default-feedback.png';
+
+    $reviews[] = [
+      'name' => $entry->name,
+      'email' => $entry->email,
+      'phone' => $entry->phone,
+      'message' => $entry->feedback,
+      'avatar' => $avatar_url,
+      'image' => $feedback_image_url,
+      'created' => date('m/d/Y H:i:s', $entry->created),
+    ];
+  }
+
+  return $reviews;
+}
+

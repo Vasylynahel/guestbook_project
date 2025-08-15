@@ -62,8 +62,15 @@ function guestbook_schema() {
       ],
     ],
     'primary key' => ['id'],
+    
+    'reviews_list' => [
+      'variables' => ['reviews' => []],
+      'template' => 'reviews-list',
+      'path' => __DIR__ . '/templates',
+    ],
   ];
 
   return $schema;
 }
+
 
