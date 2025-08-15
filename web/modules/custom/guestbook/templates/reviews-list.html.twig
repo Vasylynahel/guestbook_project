@@ -1,18 +1,24 @@
+{{ attach_library('guestbook/guestbook-styles') }}
+
 {% if reviews %}
   <div class="reviews-wrapper">
     {% for review in reviews %}
       <div class="review">
         <div class="review-avatar">
-          <img src="{{ review.avatar }}" alt="{{ review.name }}">
+          {% if review.avatar is not empty and review.avatar|trim != '' and review.avatar != '/modules/custom/guestbook/images/default-avatar.png' %}
+            <img src="{{ review.avatar }}">
+          {% else %}
+            <div class="avatar-placeholder"></div>
+          {% endif %}
         </div>
         <div class="review-content">
           <h3>{{ review.name }}</h3>
           <p class="review-date">{{ review.created }}</p>
           <p class="review-message">{{ review.message }}</p>
 
-          {% if review.image %}
+          {% if review.image is not empty and review.image != '/modules/custom/guestbook/images/default-feedback.png' %}
             <div class="review-image">
-              <img src="{{ review.image }}" alt="Feedback image">
+              <img src="{{ review.image }}">
             </div>
           {% endif %}
         </div>
