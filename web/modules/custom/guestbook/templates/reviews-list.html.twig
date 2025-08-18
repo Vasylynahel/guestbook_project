@@ -2,40 +2,64 @@
 {{ attach_library('guestbook/guestbook-modal') }}
 
 {% if reviews %}
- <div class="reviews-wrapper">
+<div class="reviews-wrapper">
   {% for review in reviews %}
     <div class="review" data-id="{{ review.id }}">
-      <div class="review-avatar">
-        {% if review.avatar is not empty and review.avatar|trim != '' and review.avatar != '/modules/custom/guestbook/images/default-avatar.png' %}
-          <img src="{{ review.avatar }}" alt="{{ review.name }}">
-        {% else %}
-          <div class="avatar-placeholder"></div>
-        {% endif %}
-      </div>
+      
+      <div class="review" data-id="{{ review.id }}">
+        {# 1. Дані користувача та дата #}
+        <div class="review-header">
+          <div class="review-avatar">
+            {% if review.avatar %}
+              <img src="{{ review.avatar }}" alt="{{ review.name }}">
+            {% else %}
+              <div class="avatar-placeholder"></div>
+            {% endif %}
+          </div>
 
-      <div class="review-content">
-        <h3>{{ review.name }}</h3>
-        <p class="review-date">{{ review.created }}</p>
-        <p class="review-message">{{ review.message }}</p>
+          <div class="user-info">
+            <h3>{{ review.name }}</h3>
+            <p class="review-date">{{ review.created }}</p>
+          </div>
+        </div>
 
-        {% if review.image is not empty and review.image != '/modules/custom/guestbook/images/default-feedback.png' %}
-          <div class="review-image">
-            <img src="{{ review.image }}">
+        {# 2. Відгук (текст + зображення) #}
+        <div class="review-message-group">
+          <p class="review-message">{{ review.message }}</p>
+          {% if review.image %}
+            <div class="review-image">
+              <img src="{{ review.image }}" alt="Review image">
+            </div>
+          {% endif %}
+        </div>
+
+        {# 3. Контактні дані #}
+        {% if review.contact %}
+          <div class="review-contact">
+            {% if review.contact.email %}
+              <p>Email: <a href="mailto:{{ review.contact.email }}">{{ review.contact.email }}</a></p>
+            {% endif %}
+            {% if review.contact.phone %}
+              <p>Телефон: {{ review.contact.phone }}</p>
+            {% endif %}
           </div>
         {% endif %}
 
+        {# 4. Кнопки адміністратора #}
         {% if review.admin_buttons %}
           <div class="admin-buttons">
             {{ review.admin_buttons.edit }}
-            <button class="delete-link" data-id="{{ review.id }}" type="button">
-              Видалити
-            </button>
+            <button class="delete-link" data-id="{{ review.id }}" type="button">Видалити</button>
           </div>
         {% endif %}
       </div>
+
+
+      
     </div>
   {% endfor %}
 </div>
+
 
 <!-- Модалка і backdrop один раз на сторінці -->
 <div id="delete-modal" class="modal hidden">
