@@ -15,10 +15,10 @@ guestbook.edit:
     _permission: 'administer site configuration'
 
 guestbook.delete:
-  path: '/admin/guestbook/delete/{id}'
+  path: '/guestbook/{id}/delete'
   defaults:
-    _controller: '\Drupal\guestbook\Controller\GuestbookController::delete'
-    _title: 'Delete Review'
+    _form: '\Drupal\guestbook\Form\GuestbookDeleteForm'
+    _title: 'Delete guestbook entry'
   requirements:
     _permission: 'administer site configuration'
 

@@ -1,39 +1,52 @@
 {{ attach_library('guestbook/guestbook-styles') }}
+{{ attach_library('guestbook/guestbook-modal') }}
 
 {% if reviews %}
-  <div class="reviews-wrapper">
-    {% for review in reviews %}
-      <div class="review">
-        <div class="review-avatar">
-          {% if review.avatar is not empty and review.avatar|trim != '' and review.avatar != '/modules/custom/guestbook/images/default-avatar.png' %}
-            <img src="{{ review.avatar }}" alt="{{ review.name }}">
-          {% else %}
-            <div class="avatar-placeholder"></div>
-          {% endif %}
-        </div>
-
-        <div class="review-content">
-          <h3>{{ review.name }}</h3>
-          <p class="review-date">{{ review.created }}</p>
-          <p class="review-message">{{ review.message }}</p>
-
-          {% if review.image is not empty and review.image != '/modules/custom/guestbook/images/default-feedback.png' %}
-            <div class="review-image">
-              <img src="{{ review.image }}">
-            </div>
-          {% endif %}
-
-          {% if review.admin_buttons %}
-            <div class="admin-buttons">
-              {{ review.admin_buttons.edit }}
-              {{ review.admin_buttons.delete }}
-            </div>
-          {% endif %}
-
-        </div>
+ <div class="reviews-wrapper">
+  {% for review in reviews %}
+    <div class="review" data-id="{{ review.id }}">
+      <div class="review-avatar">
+        {% if review.avatar is not empty and review.avatar|trim != '' and review.avatar != '/modules/custom/guestbook/images/default-avatar.png' %}
+          <img src="{{ review.avatar }}" alt="{{ review.name }}">
+        {% else %}
+          <div class="avatar-placeholder"></div>
+        {% endif %}
       </div>
-    {% endfor %}
+
+      <div class="review-content">
+        <h3>{{ review.name }}</h3>
+        <p class="review-date">{{ review.created }}</p>
+        <p class="review-message">{{ review.message }}</p>
+
+        {% if review.image is not empty and review.image != '/modules/custom/guestbook/images/default-feedback.png' %}
+          <div class="review-image">
+            <img src="{{ review.image }}">
+          </div>
+        {% endif %}
+
+        {% if review.admin_buttons %}
+          <div class="admin-buttons">
+            {{ review.admin_buttons.edit }}
+            <button class="delete-link" data-id="{{ review.id }}" type="button">
+              Видалити
+            </button>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<!-- Модалка і backdrop один раз на сторінці -->
+<div id="delete-modal" class="modal hidden">
+  <div class="modal-content">
+    <p>Ви впевнені, що хочете видалити цей запис?</p>
+    <button id="confirm-delete" type="button">Видалити</button>
+    <button id="cancel-delete" type="button">Скасувати</button>
   </div>
+</div>
+<div id="modal-backdrop" class="modal-backdrop hidden"></div>
+
 {% else %}
   <p>Відгуків поки немає.</p>
 {% endif %}
