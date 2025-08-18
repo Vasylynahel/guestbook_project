@@ -151,3 +151,23 @@
   }
 }
 
+.admin-buttons{
+  margin-top: 10px;
+  }
+  
+.admin-buttons a{
+ text-decoration: none;
+ font-size: 14px;
+ color: #fffefc;
+ background-color: #b8976a;
+ border-radius: 8px;
+ padding: 12px 15px;
+ cursor: pointer;
+ display: inline-block;
+ transition: all 0.3s ease;
+ }
+
+.admin-buttons a:hover{ 
+  color: #544d42;
+  text-decoration: none;
+  }

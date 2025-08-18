@@ -6,11 +6,12 @@
       <div class="review">
         <div class="review-avatar">
           {% if review.avatar is not empty and review.avatar|trim != '' and review.avatar != '/modules/custom/guestbook/images/default-avatar.png' %}
-            <img src="{{ review.avatar }}">
+            <img src="{{ review.avatar }}" alt="{{ review.name }}">
           {% else %}
             <div class="avatar-placeholder"></div>
           {% endif %}
         </div>
+
         <div class="review-content">
           <h3>{{ review.name }}</h3>
           <p class="review-date">{{ review.created }}</p>
@@ -21,6 +22,14 @@
               <img src="{{ review.image }}">
             </div>
           {% endif %}
+
+          {% if review.admin_buttons %}
+            <div class="admin-buttons">
+              {{ review.admin_buttons.edit }}
+              {{ review.admin_buttons.delete }}
+            </div>
+          {% endif %}
+
         </div>
       </div>
     {% endfor %}

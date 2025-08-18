@@ -321,33 +321,33 @@ class GuestbookForm extends FormBase implements ContainerInjectionInterface {
     $response->addCommand(new HtmlCommand('#form-messages', $error_markup));
     return $response;
   }
- function guestbook_get_reviews() {
-  \Drupal::logger('guestbook')->notice('guestbook_get_reviews() function was called');
+   function guestbook_get_reviews() {
+    \Drupal::logger('guestbook')->notice('guestbook_get_reviews() function was called');
 
-  $query = \Drupal::database()->select('guestbook_entries', 'g')
-    ->fields('g')
-    ->orderBy('created', 'DESC');
-  $results = $query->execute()->fetchAll();
+    $query = \Drupal::database()->select('guestbook_entries', 'g')
+      ->fields('g')
+      ->orderBy('created', 'DESC');
+    $results = $query->execute()->fetchAll();
 
-  \Drupal::logger('guestbook')->notice('Query returned @count rows', [
-    '@count' => count($results),
-  ]);
+    \Drupal::logger('guestbook')->notice('Query returned @count rows', [
+      '@count' => count($results),
+    ]);
 
-  $reviews = [];
-  $file_url_generator = \Drupal::service('file_url_generator');
+    $reviews = [];
+    $file_url_generator = \Drupal::service('file_url_generator');
 
-  foreach ($results as $entry) {
-    $reviews[] = [
-      'name' => $entry->name,
-      'email' => $entry->email,
-      'phone' => $entry->phone,
-      'message' => $entry->feedback,
-      'avatar' => $entry->avatar ? $file_url_generator->generateAbsoluteString($entry->avatar) : '',
-      'image' => $entry->feedback_image ? $file_url_generator->generateAbsoluteString($entry->feedback_image) : '',
-      'created' => date('m/d/Y H:i:s', $entry->created),
-    ];
+    foreach ($results as $entry) {
+      $reviews[] = [
+        'name' => $entry->name,
+        'email' => $entry->email,
+        'phone' => $entry->phone,
+        'message' => $entry->feedback,
+        'avatar' => $entry->avatar ? $file_url_generator->generateAbsoluteString($entry->avatar) : '',
+        'image' => $entry->feedback_image ? $file_url_generator->generateAbsoluteString($entry->feedback_image) : '',
+        'created' => date('m/d/Y H:i:s', $entry->created),
+      ];
+    }
+
+    return $reviews;
   }
-
-  return $reviews;
-}
 }
