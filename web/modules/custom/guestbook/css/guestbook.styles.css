@@ -10,7 +10,7 @@
 .sticky-header-toggle{
   background-color: #c5a983 !important;
   }
-  
+
 .site-header__initial {
   background-color: #c5a983 !important;
   }
@@ -18,20 +18,20 @@
 .primary-nav__menu-link-inner{
   color: #c5a983 !important;
   }
-  
-.primary-nav__menu-link-inner::after{
+
+.primary-nav__menu-link-inner::after {
   content: "";
   background-color: #c5a983 !important;
-  }
-  
+}
+
 .region--secondary-menu{
   color: #b8976a;
   }
-  
+
 .breadcrumb__link{
   color: #b8976a;
   }
-  
+
 /* =================== Логотип =================== */
 .site-branding__logo img {
   max-height: 50px;
@@ -250,7 +250,7 @@
   font-size: 0.95rem;
   line-height: 1.4;
   color: #3d3224;
-  
+
   /* Нові стилі для фону відгуку */
   background-color: #f7f2e9; /* світліший відтінок, близький до основного */
   padding: 12px 15px;
@@ -417,4 +417,3 @@
     max-width: 100%;
   }
 }
-
