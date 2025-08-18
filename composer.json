@@ -99,5 +99,9 @@
                 "      composer remove drupal/core-project-message"
             ]
         }
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.1",
+        "drupal/coder": "^8.3"
     }
 }
