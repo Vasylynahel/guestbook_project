@@ -6,3 +6,19 @@ guestbook.page:
   requirements:
     _permission: 'access content'
 
+guestbook.edit:
+  path: '/admin/guestbook/edit/{id}'
+  defaults:
+    _controller: '\Drupal\guestbook\Controller\GuestbookController::edit'
+    _title: 'Edit Review'
+  requirements:
+    _permission: 'administer site configuration'
+
+guestbook.delete:
+  path: '/admin/guestbook/delete/{id}'
+  defaults:
+    _controller: '\Drupal\guestbook\Controller\GuestbookController::delete'
+    _title: 'Delete Review'
+  requirements:
+    _permission: 'administer site configuration'
+

@@ -16,6 +16,8 @@ function guestbook_theme($existing, $type, $theme, $path) {
 /**
  * Повертає масив відгуків з бази.
  */
+use Drupal\Core\Url;
+
 function guestbook_get_reviews() {
   $query = \Drupal::database()->select('guestbook_entries', 'g')
     ->fields('g')
@@ -24,25 +26,31 @@ function guestbook_get_reviews() {
 
   $reviews = [];
   $file_url_generator = \Drupal::service('file_url_generator');
+  $current_user = \Drupal::currentUser();
 
   foreach ($results as $entry) {
-    // Якщо немає аватара або картинки — ставимо дефолтну
-    $avatar_url = $entry->avatar
-      ? $file_url_generator->generateAbsoluteString($entry->avatar)
-      : '/modules/custom/guestbook/images/default-avatar.png';
+    // Кнопки редагування і видалення тільки для користувачів з правами адміністратора
+    $admin_buttons = [];
+    if ($current_user->hasPermission('administer site configuration')) {
+      $edit_url = Url::fromRoute('guestbook.edit', ['id' => $entry->id])->toString();
+      $delete_url = Url::fromRoute('guestbook.delete', ['id' => $entry->id])->toString();
 
-    $feedback_image_url = $entry->feedback_image
-      ? $file_url_generator->generateAbsoluteString($entry->feedback_image)
-      : '/modules/custom/guestbook/images/default-feedback.png';
+      $admin_buttons = [
+        'edit' => '<a href="'. $edit_url .'" class="button edit-button">Edit</a>',
+        'delete' => '<a href="'. $delete_url .'" class="button delete-button">Delete</a>',
+      ];
+    }
 
     $reviews[] = [
+      'id' => $entry->id,
       'name' => $entry->name,
       'email' => $entry->email,
       'phone' => $entry->phone,
       'message' => $entry->feedback,
-      'avatar' => $avatar_url,
-      'image' => $feedback_image_url,
+      'avatar' => $entry->avatar ? $file_url_generator->generateAbsoluteString($entry->avatar) : '',
+      'image' => $entry->feedback_image ? $file_url_generator->generateAbsoluteString($entry->feedback_image) : '',
       'created' => date('m/d/Y H:i:s', $entry->created),
+      'admin_buttons' => $admin_buttons,
     ];
   }
 
