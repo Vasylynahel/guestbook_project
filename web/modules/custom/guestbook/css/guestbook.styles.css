@@ -1,6 +1,4 @@
-/* guestbook.styles.css */
-
-/* Загальний блок */
+/* =================== Базові стилі =================== */
 .block__content {
   max-width: 800px;
   margin: 0 auto;
@@ -12,7 +10,7 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-/* ==== ФОРМА ==== */
+/* =================== ФОРМА =================== */
 .guestbook-form {
   display: flex;
   flex-direction: column;
@@ -63,28 +61,90 @@
   box-shadow: 0 4px 8px rgba(161, 127, 79, 0.4);
 }
 
-/* ==== СПИСОК ВІДГУКІВ ==== */
-/* Загальний контейнер */
+/* =================== СПИСОК ВІДГУКІВ =================== */
 .reviews-wrapper {
   display: flex;
   flex-direction: column;
   gap: 20px;
   padding: 20px;
-  background-color: #fdfaf5; /* світлий деревний фон */
+  background-color: #fdfaf5;
   border-radius: 10px;
 }
 
-/* Окремий відгук */
+/* ====== Окремий відгук ====== */
 .review {
   display: flex;
-  gap: 15px;
+  flex-direction: column;
   padding: 15px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
-/* Аватар */
+/* =================== Відгук =================== */
+.review-message {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #3d3224;
+  
+  /* Нові стилі для фону відгуку */
+  background-color: #f7f2e9; /* світліший відтінок, близький до основного */
+  padding: 12px 15px;
+  border-radius: 6px;
+}
+
+/* =================== Верхній блок: аватар + ім'я та дата =================== */
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* відстань між аватаром та текстом */
+}
+
+.review-header .user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-header h3 {
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+  color: #5b4636;
+}
+
+.review-header .review-date {
+  font-size: 0.85rem;
+  color: #8a7a6c;
+}
+
+/* =================== Відгук =================== */
+.review-message {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #3d3224;
+}
+
+.review-image {
+  margin-top: 10px;
+}
+
+.review-image img {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 6px;
+  object-fit: cover;
+  display: block;
+}
+
+/* =================== Контактні дані =================== */
+.review-contact {
+  font-size: 0.9rem;
+  color: #5c4735;
+  margin-top: 5px;
+  flex-direction: column;
+  gap: 3px;
+}
+
+/* =================== Аватар (старі стилі залишаємо) =================== */
 .review-avatar {
   width: 70px;
   height: 70px;
@@ -107,71 +167,32 @@
   border-radius: 50%;
 }
 
-/* Контент відгуку */
-.review-content h3 {
-  margin: 0 0 5px 0;
-  font-size: 1.1rem;
-  color: #5b4636; /* коричневий */
-}
 
-.review-date {
-  font-size: 0.85rem;
-  color: #8a7a6c;
-  margin-bottom: 8px;
-}
-
-.review-message {
-  font-size: 0.95rem;
-  line-height: 1.4;
-  color: #3d3224;
-}
-
-/* Зображення у відгуку */
-.review-image {
+/* =================== Кнопки адміністратора =================== */
+.admin-buttons {
   margin-top: 10px;
 }
 
-.review-image img {
-  width: 100%;
-  max-width: 200px;
-  border-radius: 6px;
-  object-fit: cover;
-  display: block;
+.admin-buttons a,
+.admin-buttons .delete-link {
+  text-decoration: none;
+  font-size: 14px;
+  color: #fffefc;
+  background-color: #b8976a;
+  border-radius: 8px;
+  padding: 12px 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
 }
 
-/* Адаптивність */
-@media (max-width: 600px) {
-  .review {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .review-image img {
-    max-width: 100%;
-  }
-}
-
-.admin-buttons{
-  margin-top: 10px;
-  }
-  
-.admin-buttons a{
- text-decoration: none;
- font-size: 14px;
- color: #fffefc;
- background-color: #b8976a;
- border-radius: 8px;
- padding: 12px 15px;
- cursor: pointer;
- display: inline-block;
- transition: all 0.3s ease;
- }
-
-.admin-buttons a:hover{ 
+.admin-buttons a:hover,
+.admin-buttons .delete-link:hover {
   color: #544d42;
   text-decoration: none;
-  }
-  
+}
+
+/* =================== Модалка =================== */
 .modal {
   position: fixed;
   top: 50%;
@@ -182,7 +203,7 @@
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   z-index: 1001;
-  display: none; /* спочатку ховаємо */
+  display: none;
 }
 
 .modal-backdrop {
@@ -194,10 +215,11 @@
   backdrop-filter: blur(4px);
   background: rgba(0,0,0,0.3);
   z-index: 1000;
-  display: none; /* спочатку ховаємо */
+  display: none;
 }
 
-#confirm-delete, #cancel-delete {
+#confirm-delete,
+#cancel-delete {
   margin: 5px;
   padding: 6px 12px;
   border: none;
@@ -215,21 +237,20 @@
   color: white;
 }
 
-.admin-buttons .delete-link {
-  text-decoration: none;
-  font-size: 14px;
-  color: #fffefc;
-  background-color: #b8976a;
-  border-radius: 8px;
-  padding: 17px 15px;
-  cursor: pointer;
-  display: inline-block;
-  transition: all 0.3s ease;
-  border: none; /* прибираємо дефолтний border кнопки */
-}
+/* =================== Адаптивність =================== */
+@media (max-width: 600px) {
+  .review {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-.admin-buttons .delete-link:hover {
-  color: #544d42;
-  text-decoration: none;
+  .review-header {
+    flex-direction: row; /* аватар + текст залишаються горизонтально */
+    align-items: center;
+  }
+
+  .review-image img {
+    max-width: 100%;
+  }
 }
 

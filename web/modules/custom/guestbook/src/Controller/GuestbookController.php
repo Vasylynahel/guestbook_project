@@ -10,35 +10,43 @@ use Drupal\guestbook\Form\GuestbookEditForm;
 
 class GuestbookController extends ControllerBase {
 
-  public function content() {
-    // Отримуємо відгуки
-    $reviews = guestbook_get_reviews();
+public function content() {
+  // Отримуємо відгуки
+  $reviews = guestbook_get_reviews();
 
-    $current_user = \Drupal::currentUser();
+  $current_user = \Drupal::currentUser();
 
-    // Додаємо кнопки для адміністратора
-    foreach ($reviews as &$review) {
-      if ($current_user->hasPermission('administer site configuration') && !empty($review['id'])) {
-        $review['admin_buttons'] = [
-          'edit' => Link::createFromRoute('Edit', 'guestbook.edit', ['id' => $review['id']])->toRenderable(),
-          'delete' => Link::createFromRoute('Delete', 'guestbook.delete', ['id' => $review['id']])->toRenderable(),
-        ];
-      }
+  // Додаємо кнопки для адміністратора та контактні дані
+  foreach ($reviews as &$review) {
+    // Адмін-кнопки
+    if ($current_user->hasPermission('administer site configuration') && !empty($review['id'])) {
+      $review['admin_buttons'] = [
+        'edit' => Link::createFromRoute('Edit', 'guestbook.edit', ['id' => $review['id']])->toRenderable(),
+        'delete' => Link::createFromRoute('Delete', 'guestbook.delete', ['id' => $review['id']])->toRenderable(),
+      ];
     }
 
-    return [
-      '#type' => 'container',
-      'form' => [
-        '#weight' => 0,
-        'content' => \Drupal::formBuilder()->getForm('Drupal\guestbook\Form\GuestbookForm'),
-      ],
-      'reviews' => [
-        '#weight' => 10,
-        '#theme' => 'reviews_list',
-        '#reviews' => $reviews,
-      ],
+    // Контактні дані
+    $review['contact'] = [
+      'email' => !empty($review['email']) ? $review['email'] : NULL,
+      'phone' => !empty($review['phone']) ? $review['phone'] : NULL,
     ];
   }
+
+  return [
+    '#type' => 'container',
+    'form' => [
+      '#weight' => 0,
+      'content' => \Drupal::formBuilder()->getForm('Drupal\guestbook\Form\GuestbookForm'),
+    ],
+    'reviews' => [
+      '#weight' => 10,
+      '#theme' => 'reviews_list',
+      '#reviews' => $reviews,
+    ],
+  ];
+}
+
 
   public function edit($id) {
     // Передаємо $id через запит
