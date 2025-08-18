@@ -3,3 +3,12 @@ guestbook-styles:
     theme:
       css/guestbook.styles.css: {}
 
+guestbook-modal:
+  version: 1.x
+  js:
+    js/guestbook-modal.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+

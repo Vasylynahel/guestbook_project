@@ -197,10 +197,28 @@ class GuestbookForm extends FormBase implements ContainerInjectionInterface {
     }
   }
 
-  public function submitForm(array &$form, FormStateInterface $form_state) {
-    $avatar_uri = $this->handleFile($form_state->getValue('avatar'));
-    $feedback_image_uri = $this->handleFile($form_state->getValue('feedback_image'));
+public function submitForm(array &$form, FormStateInterface $form_state) {
+  $avatar_uri = $this->handleFile($form_state->getValue('avatar'));
+  $feedback_image_uri = $this->handleFile($form_state->getValue('feedback_image'));
 
+  // Беремо id, якщо це редагування
+  $id = $form_state->get('id');
+
+  if ($id) {
+    // Оновлюємо існуючий запис
+    $this->database->update('guestbook_entries')
+      ->fields([
+        'name' => trim($form_state->getValue('name')),
+        'email' => trim($form_state->getValue('email')),
+        'phone' => trim($form_state->getValue('phone')),
+        'feedback' => trim($form_state->getValue('feedback')),
+        'avatar' => $avatar_uri,
+        'feedback_image' => $feedback_image_uri,
+      ])
+      ->condition('id', $id)
+      ->execute();
+  } else {
+    // Вставляємо новий запис
     $this->database->insert('guestbook_entries')
       ->fields([
         'name' => trim($form_state->getValue('name')),
@@ -213,6 +231,8 @@ class GuestbookForm extends FormBase implements ContainerInjectionInterface {
       ])
       ->execute();
   }
+}
+
 
   private function handleFile($fid) {
     if (!empty($fid) && is_array($fid)) {
@@ -257,25 +277,25 @@ class GuestbookForm extends FormBase implements ContainerInjectionInterface {
     $response = new AjaxResponse();
 
     if ($form_state->getErrors()) {
-      // Вивід усіх помилок у контейнер #form-messages
-      $messages = [
-        '#type' => 'status_messages',
-      ];
-      $messages_rendered = \Drupal::service('renderer')->renderRoot($messages);
-      $response->addCommand(new HtmlCommand('#form-messages', $messages_rendered));
+        $messages = [
+            '#type' => 'status_messages',
+        ];
+        $messages_rendered = \Drupal::service('renderer')->renderRoot($messages);
+        $response->addCommand(new HtmlCommand('#form-messages', $messages_rendered));
 
-      // Перемальовка самої форми
-      $form_rendered = \Drupal::service('renderer')->renderRoot($form);
-      $response->addCommand(new HtmlCommand('#guestbook-form-wrapper', $form_rendered));
+        // Перемальовка самої форми
+        $form_rendered = \Drupal::service('renderer')->renderRoot($form);
+        $response->addCommand(new HtmlCommand('#guestbook-form-wrapper', $form_rendered));
     } else {
-      $this->submitForm($form, $form_state);
-      $response->addCommand(new HtmlCommand('#guestbook-form-wrapper',
-        '<div class="guestbook-success-message" style="color:green;margin-bottom:10px;">'.$this->t('Дані успішно збережено.').'</div>'
-      ));
+        // Повідомлення про успішне додавання
+        $response->addCommand(new HtmlCommand('#guestbook-form-wrapper',
+            '<div class="guestbook-success-message" style="color:green;margin-bottom:10px;">'.$this->t('Дані успішно збережено.').'</div>'
+        ));
     }
 
     return $response;
-  }
+}
+
   
   public function validateFieldAjax(array &$form, FormStateInterface $form_state) {
     $response = new AjaxResponse();
