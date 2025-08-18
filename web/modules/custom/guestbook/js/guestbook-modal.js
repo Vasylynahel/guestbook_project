@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const modal = document.getElementById('delete-modal');
   const backdrop = document.getElementById('modal-backdrop');
   const confirmBtn = document.getElementById('confirm-delete');
@@ -26,9 +26,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
   confirmBtn.addEventListener('click', e => {
     const id = e.target.dataset.id;
-    if (!id) return;
+    if (!id) { return;
+    }
 
-    fetch(`/guestbook/${id}/delete`, {
+    fetch(` / guestbook / ${id} / delete`, {
       method: 'POST',
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
@@ -42,9 +43,9 @@ document.addEventListener('DOMContentLoaded', function() {
       modal.style.display = 'none';
       backdrop.style.display = 'none';
       // Видаляємо запис з DOM
-      const review = document.querySelector(`.review[data-id="${id}"]`);
-      if (review) review.remove();
+      const review = document.querySelector(`.review[data - id = "${id}"]`);
+      if (review) { review.remove();
+      }
     });
   });
 });
-
