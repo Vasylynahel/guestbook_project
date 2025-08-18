@@ -1,3 +1,166 @@
+/* =================== Header =================== */
+.site-header {
+  background-color: #b8976a !important; /* світлий фон, як у контенту */
+  padding: 10px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  position: relative;
+  z-index: 100;
+}
+
+.sticky-header-toggle{
+  background-color: #c5a983 !important;
+  }
+  
+.site-header__initial {
+  background-color: #c5a983 !important;
+  }
+
+.primary-nav__menu-link-inner{
+  color: #c5a983 !important;
+  }
+  
+.primary-nav__menu-link-inner::after{
+  content: "";
+  background-color: #c5a983 !important;
+  }
+  
+.region--secondary-menu{
+  color: #b8976a;
+  }
+  
+.breadcrumb__link{
+  color: #b8976a;
+  }
+  
+/* =================== Логотип =================== */
+.site-branding__logo img {
+  max-height: 50px;
+  width: auto;
+  display: block;
+}
+
+/* =================== Назва сайту =================== */
+.site-branding__name a {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #5b4636;
+  text-decoration: none;
+}
+
+.site-branding__name a:hover {
+  color: #b8976a;
+}
+
+/* =================== Головне меню =================== */
+.primary-nav__menu {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.primary-nav__menu-link {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.95rem;
+  color: #5c4735;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.primary-nav__menu-link:hover {
+  background-color: #f7f2e9;
+  color: #b8976a;
+}
+
+/* =================== Вторинне меню (account) =================== */
+.secondary-nav__menu {
+  display: flex;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.secondary-nav__menu-link {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.9rem;
+  color: #5c4735;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.secondary-nav__menu-link:hover {
+  background-color: #f7f2e9;
+  color: #b8976a;
+}
+
+/* =================== Кнопки мобільного меню =================== */
+.mobile-nav-button {
+  background-color: #b8976a;
+  color: #fffefc;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mobile-nav-button:hover {
+  background-color: #a17f4f;
+}
+
+/* =================== Пошукова форма =================== */
+.search-block-form input[type="search"] {
+  padding: 8px 12px;
+  border: 1px solid #d2c4b2;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.search-block-form input[type="search"]:focus {
+  border-color: #b8976a;
+  box-shadow: 0 0 6px rgba(184, 151, 106, 0.3);
+  outline: none;
+}
+
+.search-block-form .button--primary {
+  background-color: #b8976a;
+  color: #fffefc;
+  border-radius: 6px;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-block-form .button--primary:hover {
+  background-color: #a17f4f;
+  color: #fffefc;
+}
+
+/* =================== Sticky header toggle =================== */
+.sticky-header-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.sticky-header-toggle__icon span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: #5c4735;
+  margin: 4px 0;
+  border-radius: 2px;
+}
+
 /* =================== Базові стилі =================== */
 .block__content {
   max-width: 800px;
@@ -60,6 +223,7 @@
   background-color: #a17f4f;
   box-shadow: 0 4px 8px rgba(161, 127, 79, 0.4);
 }
+
 
 /* =================== СПИСОК ВІДГУКІВ =================== */
 .reviews-wrapper {
