@@ -4,6 +4,7 @@ namespace Drupal\guestbook\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Provides the Guestbook Edit Form.
@@ -33,7 +34,7 @@ class GuestbookEditForm extends FormBase {
    *   The form structure.
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $id = $this->request()->query->get('id');
+    $id = \Drupal::request()->query->get('id');
     if (!$id) {
       $this->messenger()->addError($this->t('No review ID provided.'));
       return [];
@@ -42,7 +43,7 @@ class GuestbookEditForm extends FormBase {
     // Save id for submitForm in form_state.
     $form_state->set('id', $id);
 
-    $record = $this->database()
+    $record = \Drupal::database()
       ->select('guestbook_entries', 'g')
       ->fields('g', ['name', 'feedback'])
       ->condition('id', $id)
@@ -50,7 +51,7 @@ class GuestbookEditForm extends FormBase {
       ->fetchAssoc();
 
     if (!$record) {
-      $this->messenger()->addError($this->t('Review not found.'));
+      \Drupal::messenger()->addError($this->t('Review not found.'));
       return [];
     }
 
@@ -89,7 +90,7 @@ class GuestbookEditForm extends FormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $id = $form_state->get('id');
 
-    $this->database()
+    \Drupal::database()
       ->update('guestbook_entries')
       ->fields([
         'name' => $form_state->getValue('name'),

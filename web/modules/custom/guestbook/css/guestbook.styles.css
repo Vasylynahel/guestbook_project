@@ -1,6 +1,6 @@
 /* =================== Header =================== */
 .site-header {
-  background-color: #b8976a !important; /* світлий фон, як у контенту */
+  background-color: #b8976a !important;
   padding: 10px 0;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   position: relative;
@@ -19,11 +19,6 @@
   color: #c5a983 !important;
   }
 
-.primary-nav__menu-link-inner::after {
-  content: "";
-  background-color: #c5a983 !important;
-}
-
 .region--secondary-menu{
   color: #b8976a;
   }
@@ -32,19 +27,12 @@
   color: #b8976a;
   }
 
-/* =================== Логотип =================== */
-.site-branding__logo img {
-  max-height: 50px;
-  width: auto;
-  display: block;
-}
-
-/* =================== Назва сайту =================== */
+/* =================== Site Name =================== */
 .site-branding__name a {
+  color: #5b4636;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
-  color: #5b4636;
   text-decoration: none;
 }
 
@@ -52,22 +40,21 @@
   color: #b8976a;
 }
 
-/* =================== Головне меню =================== */
+/* =================== Main Menu =================== */
 .primary-nav__menu {
   display: flex;
-  gap: 15px;
-  list-style: none;
   margin: 0;
+  list-style: none;
   padding: 0;
 }
 
 .primary-nav__menu-link {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 0.95rem;
+  border-radius: 6px;
   color: #5c4735;
   text-decoration: none;
   padding: 8px 12px;
-  border-radius: 6px;
   transition: all 0.3s ease;
 }
 
@@ -76,10 +63,9 @@
   color: #b8976a;
 }
 
-/* =================== Вторинне меню (account) =================== */
+/* =================== Second Menu (account) =================== */
 .secondary-nav__menu {
   display: flex;
-  gap: 12px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -88,10 +74,10 @@
 .secondary-nav__menu-link {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 0.9rem;
+  border-radius: 6px;
   color: #5c4735;
   text-decoration: none;
   padding: 6px 10px;
-  border-radius: 6px;
   transition: all 0.3s ease;
 }
 
@@ -100,14 +86,14 @@
   color: #b8976a;
 }
 
-/* =================== Кнопки мобільного меню =================== */
+/* =================== Mobile Nav Button =================== */
 .mobile-nav-button {
   background-color: #b8976a;
-  color: #fffefc;
   border: none;
-  padding: 10px 14px;
   border-radius: 8px;
+  color: #fffefc;
   cursor: pointer;
+  padding: 10px 14px;
   transition: all 0.3s ease;
 }
 
@@ -115,12 +101,12 @@
   background-color: #a17f4f;
 }
 
-/* =================== Пошукова форма =================== */
+/* =================== Search =================== */
 .search-block-form input[type="search"] {
-  padding: 8px 12px;
   border: 1px solid #d2c4b2;
   border-radius: 6px;
   font-size: 0.95rem;
+  padding: 8px 12px;
   transition: all 0.3s ease;
 }
 
@@ -132,11 +118,11 @@
 
 .search-block-form .button--primary {
   background-color: #b8976a;
-  color: #fffefc;
-  border-radius: 6px;
-  padding: 8px 12px;
   border: none;
+  border-radius: 6px;
+  color: #fffefc;
   cursor: pointer;
+  padding: 8px 12px;
   transition: all 0.3s ease;
 }
 
@@ -153,44 +139,44 @@
 }
 
 .sticky-header-toggle__icon span {
-  display: block;
-  width: 22px;
-  height: 2px;
   background-color: #5c4735;
-  margin: 4px 0;
   border-radius: 2px;
+  display: block;
+  height: 2px;
+  margin: 4px 0;
+  width: 22px;
 }
 
-/* =================== Базові стилі =================== */
+/* =================== Base Style =================== */
 .block__content {
-  max-width: 800px;
-  margin: 0 auto;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #4b3b2a;
   background-color: #fdfaf6;
-  padding: 30px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  color: #4b3b2a;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 30px;
 }
 
-/* =================== ФОРМА =================== */
+/* =================== Form =================== */
 .guestbook-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
 .guestbook-form input[type="text"],
 .guestbook-form input[type="email"],
 .guestbook-form input[type="file"],
 .guestbook-form textarea {
-  width: 100%;
-  padding: 12px 15px;
+  background-color: #fffefc;
   border: 1px solid #d2c4b2;
   border-radius: 8px;
-  background-color: #fffefc;
+  box-sizing: border-box;
   font-size: 1rem;
+  padding: 12px 15px;
   transition: all 0.3s ease;
+  width: 100%;
 }
 
 .guestbook-form input:focus,
@@ -201,22 +187,22 @@
 }
 
 .form-item__label {
+  color: #5c4735;
+  display: block;
   font-weight: 600;
   margin-bottom: 6px;
-  display: block;
-  color: #5c4735;
 }
 
 .guestbook-form .form-submit {
-  width: max-content;
-  padding: 12px 30px;
   background-color: #b8976a;
-  color: #fffefc;
-  font-weight: 600;
   border: none;
   border-radius: 8px;
+  padding: 12px 30px;
+  color: #fffefc;
   cursor: pointer;
+  font-weight: 600;
   transition: all 0.3s ease;
+  width: max-content;
 }
 
 .guestbook-form .form-submit:hover {
@@ -225,43 +211,63 @@
 }
 
 
-/* =================== СПИСОК ВІДГУКІВ =================== */
+/* =================== Reviews List =================== */
 .reviews-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 20px;
   background-color: #fdfaf5;
   border-radius: 10px;
-}
-
-/* ====== Окремий відгук ====== */
-.review {
   display: flex;
   flex-direction: column;
-  padding: 15px;
+  padding: 20px;
+}
+
+/* ====== Review ====== */
+.review {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
 }
 
-/* =================== Відгук =================== */
+/* =================== Feedback =================== */
 .review-message {
+  color: #3d3224;
   font-size: 0.95rem;
   line-height: 1.4;
-  color: #3d3224;
-
-  /* Нові стилі для фону відгуку */
-  background-color: #f7f2e9; /* світліший відтінок, близький до основного */
-  padding: 12px 15px;
+  
+  /* Text Background */
+  background-color: #f7f2e9;
   border-radius: 6px;
+  padding: 12px 15px;
 }
 
-/* =================== Верхній блок: аватар + ім'я та дата =================== */
+/* =================== Avatar + Name + Date =================== */
+.review-avatar {
+  border-radius: 50%;
+  flex-shrink: 0;
+  height: 70px;
+  overflow: hidden;
+  width: 70px;
+}
+
+.review-avatar img {
+  border-radius: 50%;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.avatar-placeholder {
+  background-color: #b8976a;
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+}
+
 .review-header {
-  display: flex;
   align-items: center;
-  gap: 15px; /* відстань між аватаром та текстом */
+  display: flex;
 }
 
 .review-header .user-info {
@@ -269,22 +275,16 @@
   flex-direction: column;
 }
 
-.review-header h3 {
-  margin: 0 0 5px 0;
-  font-size: 1.1rem;
-  color: #5b4636;
-}
-
 .review-header .review-date {
-  font-size: 0.85rem;
   color: #8a7a6c;
+  font-size: 0.85rem;
 }
 
-/* =================== Відгук =================== */
+/* =================== Review =================== */
 .review-message {
+  color: #3d3224;
   font-size: 0.95rem;
   line-height: 1.4;
-  color: #3d3224;
 }
 
 .review-image {
@@ -292,62 +292,39 @@
 }
 
 .review-image img {
-  width: 100%;
-  max-width: 200px;
   border-radius: 6px;
-  object-fit: cover;
   display: block;
-}
-
-/* =================== Контактні дані =================== */
-.review-contact {
-  font-size: 0.9rem;
-  color: #5c4735;
-  margin-top: 5px;
-  flex-direction: column;
-  gap: 3px;
-}
-
-/* =================== Аватар (старі стилі залишаємо) =================== */
-.review-avatar {
-  width: 70px;
-  height: 70px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.review-avatar img {
-  width: 100%;
-  height: 100%;
+  max-width: 200px;
   object-fit: cover;
-  border-radius: 50%;
-}
-
-.avatar-placeholder {
   width: 100%;
-  height: 100%;
-  background-color: #b8976a;
-  border-radius: 50%;
 }
 
+/* =================== Contact Data =================== */
+.review-contact {
+  color: #5c4735;
+  flex-direction: column;
+  font-size: 0.9rem;
+  gap: 3px;
+  margin-top: 5px;
+}
 
-/* =================== Кнопки адміністратора =================== */
+/* =================== Admin Button =================== */
 .admin-buttons {
   margin-top: 10px;
 }
 
 .admin-buttons a,
 .admin-buttons .delete-link {
-  text-decoration: none;
-  font-size: 14px;
-  color: #fffefc;
   background-color: #b8976a;
-  border-radius: 8px;
-  padding: 12px 15px;
-  cursor: pointer;
-  transition: all 0.3s ease;
   border: none;
+  border-radius: 8px;
+  color: #fffefc;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 12px 15px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  
 }
 
 .admin-buttons a:hover,
@@ -356,39 +333,39 @@
   text-decoration: none;
 }
 
-/* =================== Модалка =================== */
+/* =================== Modal Window =================== */
 .modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   background: #fff;
-  padding: 20px 30px;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  z-index: 1001;
   display: none;
+  left: 50%;
+  padding: 20px 30px;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
 }
 
 .modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   backdrop-filter: blur(4px);
   background: rgba(0,0,0,0.3);
-  z-index: 1000;
   display: none;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 #confirm-delete,
 #cancel-delete {
-  margin: 5px;
-  padding: 6px 12px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin: 5px;
+  padding: 6px 12px;
 }
 
 #confirm-delete {
@@ -401,16 +378,16 @@
   color: white;
 }
 
-/* =================== Адаптивність =================== */
+/* =================== Adaptive =================== */
 @media (max-width: 600px) {
   .review {
-    flex-direction: column;
     align-items: flex-start;
+    flex-direction: column;
   }
 
   .review-header {
-    flex-direction: row; /* аватар + текст залишаються горизонтально */
     align-items: center;
+    flex-direction: row;
   }
 
   .review-image img {
