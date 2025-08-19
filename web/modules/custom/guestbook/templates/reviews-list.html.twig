@@ -4,8 +4,6 @@
 {% if reviews %}
 <div class="reviews-wrapper">
   {% for review in reviews %}
-    <div class="review" data-id="{{ review.id }}">
-      
       <div class="review" data-id="{{ review.id }}">
         {# 1. Дані користувача та дата #}
         <div class="review-header">
@@ -53,15 +51,10 @@
           </div>
         {% endif %}
       </div>
-
-
-      
-    </div>
   {% endfor %}
 </div>
 
-
-<!-- Модалка і backdrop один раз на сторінці -->
+<!-- Modal Window-->
 <div id="delete-modal" class="modal hidden">
   <div class="modal-content">
     <p>Ви впевнені, що хочете видалити цей запис?</p>
